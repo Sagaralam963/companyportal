@@ -74,15 +74,15 @@
       },
       "routes": [
         {
-          "name": "RoutePage1",
-          "pattern": ":?query:",
+          "name": "Page1",
+          "pattern": "",
           "target": [
-            "TargetPage1"
+            "Page1"
           ]
         }
       ],
       "targets": {
-        "TargetPage1": {
+        "Page1": {
           "id": "Page1",
           "name": "Page1"
         }

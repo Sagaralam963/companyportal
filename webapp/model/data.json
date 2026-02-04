@@ -1,0 +1,44 @@
+{
+    "data": [
+        {
+            "productName": "iPhone 15",
+            "category": "Mobile",
+            "brand": "Apple",
+            "model": "A3090",
+            "price": "79999",
+            "rating": "4.7"
+        },
+        {
+            "productName": "Galaxy S23",
+            "category": "Mobile",
+            "brand": "Samsung",
+            "model": "SM-S911B",
+            "price": "74999",
+            "rating": "4.6"
+        },
+        {
+            "productName": "XPS 13 Laptop",
+            "category": "Laptop",
+            "brand": "Dell",
+            "model": "9315",
+            "price": "124990",
+            "rating": "4.5"
+        },
+        {
+            "productName": "Bravia 55-inch 4K LED TV",
+            "category": "TV",
+            "brand": "Sony",
+            "model": "KD-55X74L",
+            "price": "65990",
+            "rating": "4.6"
+        },
+        {
+            "productName": "IdeaPad Slim 5",
+            "category": "Laptop",
+            "brand": "Lenovo",
+            "model": "14ITL6",
+            "price": "58990",
+            "rating": "4.4"
+        }
+    ]
+}

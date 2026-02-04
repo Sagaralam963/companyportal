@@ -1,0 +1,21 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		id="mainDialog"
+		title="Hello {/recipient/name}">
+		<content>
+			
+		</content>
+		<footer>
+			<Toolbar>
+				<content>
+					<Button text="1"></Button>
+                    <Button text="2" press="closeDialog"></Button>
+				</content>
+			</Toolbar>
+		</footer>
+	</Dialog>
+</core:FragmentDefinition>
