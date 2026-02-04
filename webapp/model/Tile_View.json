@@ -1,0 +1,12 @@
+{
+	"Tile": [{
+		"Tile_Name": "Tile_1",
+		"Icon": "sap-icon://retail-store"
+	}, {
+		"Tile_Name": "Tile_2",
+		"Icon": "sap-icon://cart"
+	}, {
+		"Tile_Name": "Tile_3",
+		"Icon": "sap-icon://cart-3"
+	}]
+}

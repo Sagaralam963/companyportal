@@ -1,0 +1,164 @@
+<mvc:View controllerName="com.crave.cravefieldsales.controller.ListOfCustomers" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form">
+	<App>
+		<pages>
+			<Page id="page" title="{i18n>title}">
+				<customHeader>
+					<Bar>
+						<contentLeft><ImageContent class="headerLogo sapUiTinyMarginBegin"/></contentLeft>
+					</Bar>
+				</customHeader>
+				<content class="sapUiTinyMarginTop">
+					<l:HorizontalLayout class="sapUiSmallMarginBegin">
+						<Button class="breadcrumb" icon="sap-icon://navigation-right-arrow" iconFirst="false" id="BRDCRM_HOME" text="Customer List" type="Default"/>
+						<Button class="breadcrumb" id="BRDCRM_MYCUSTOMERS" text="My Customers"
+							visible="{= ${OrderTypeModel>/OrderTypeModel/0/oKey} ===\'MyCustomer\'? true: false }"/>
+						<Button class="breadcrumb" id="BRDCRM_PENDINGORDERS" text="Pending Approval Orders"
+							visible="{= ${OrderTypeModel>/OrderTypeModel/0/oKey} ===\'PendingApprovalOrders\'? true: false }"/>
+						<Button class="breadcrumb" id="BRDCRM_REJECTEDORDERS" text="Rejected Orders"
+							visible="{= ${OrderTypeModel>/OrderTypeModel/0/oKey} ===\'RejectedOrders\'? true: false }"/>
+					</l:HorizontalLayout>
+					<l:BlockLayout id="BlockLayout" class="addToCartBlockLayout1">
+						<l:BlockLayoutRow accentCells="Accent1" class="sapUiResponsiveMargin">
+							<l:BlockLayoutCell width="2">
+								<Select selectedKey="MyCustomer" change="onOrderTypeChange">
+									<items>
+										<core:Item key="MyCustomer" text="My Customers"/>
+										<core:Item key="PendingApprovalOrders" text="Pending Approval Orders"/>
+										<core:Item key="RejectedOrders" text="Rejected Orders"/>
+									</items>
+								</Select>
+							</l:BlockLayoutCell>
+						</l:BlockLayoutRow>
+					</l:BlockLayout>
+					<l:BlockLayout id="BlockLayout0" class="addToCartBlockLayout1"
+						visible="{= ${OrderTypeModel>/OrderTypeModel/0/oKey} ===\'MyCustomer\'? true: false }">
+						<l:BlockLayoutRow accentCells="Accent1" class="sapUiResponsiveMargin">
+							<l:BlockLayoutCell width="2">
+								<SearchField width="100%" class="sapUiLargeMarginEnd" liveChange="myCustTblLiveChange" id="inp_srchlistOfCust"/>
+							</l:BlockLayoutCell>
+							<l:BlockLayoutCell width="2">
+								<HBox justifyContent="End">
+									<ToggleButton class="type1 sapUiSmallMarginBeginEnd" icon="sap-icon://unfavorite" press="onFavourite" tooltip="favourite" pressed="false"
+										id="btn_favUnFav"/>
+									<Button class="type2" icon="sap-icon://write-new" press="onCreateOrder" text="Create Order" iconFirst="true" tooltip="Create New Order"/>
+								</HBox>
+							</l:BlockLayoutCell>
+						</l:BlockLayoutRow>
+					</l:BlockLayout>
+					<Table class="myCustomersTable" mode="SingleSelectLeft" showNoData="false"
+						visible="{= ${OrderTypeModel>/OrderTypeModel/0/oKey} ===\'MyCustomer\'? true: false }">
+						<columns>
+							<Column width="2rem" hAlign="Center"><Text text="Favorite"/></Column>
+							<Column width="2rem" hAlign="Center"><Text text="Blocked"/></Column>
+							<Column hAlign="Center" width="3.5rem"><Text text="SAP ID"/></Column>
+							<Column hAlign="Center" width="10rem" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"><Text text="Account Name"/></Column>
+							<Column width="5rem" hAlign="Center" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"><Text text="City"/></Column>
+							<Column width="5rem" hAlign="Center" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"><Text text="Street"/></Column>
+							<Column width="5rem" hAlign="Center" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"><Text text="Phone"/></Column>
+						</columns>
+					</Table>
+					<ScrollContainer class="scroll_mycustomersTbl" vertical="true" id="scroll_mycustomersTbl" height="525px"
+						visible="{= ${OrderTypeModel>/OrderTypeModel/0/oKey} ===\'MyCustomer\'? true: false }">
+						<Table id="tbl_myCustomersTable" class="myCustomersTable" mode="SingleSelectLeft"
+							items="{ path: \'listOfCustomers>/listOfCustomers\', sorter: { path: \'Customerid\' } }" growing="true" growingThreshold="100">
+							<columns>
+								<Column width="2rem" hAlign="Center"></Column>
+								<Column width="2rem" hAlign="Center"></Column>
+								<Column hAlign="Center" width="3.5rem"></Column>
+								<Column hAlign="Center" width="10rem" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"></Column>
+								<Column width="5rem" hAlign="Center" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"></Column>
+								<Column width="5rem" hAlign="Center" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"></Column>
+								<Column width="5rem" hAlign="Center" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"></Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Button icon="{= ${listOfCustomers>Favourite} ? \'sap-icon://favorite\' : \'sap-icon://unfavorite\' }" tooltip="favourite"
+											class="favouriteIconCss" press="onMakeFaourite"></Button>
+										<Button icon="sap-icon://cancel" class="favbtnlist blockclr" visible="{= ${listOfCustomers>Blocked} ===true ? true: false }"></Button><Text text="{listOfCustomers>Customerid}"/><Text text="{listOfCustomers>Customername}"/><Text text="{listOfCustomers>City}"/>
+										<Text text="{listOfCustomers>Street}"/><Text text="{listOfCustomers>Phone}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+					<l:BlockLayout id="BlockLayout1" class="addToCartBlockLayout1"
+						visible="{= ${OrderTypeModel>/OrderTypeModel/0/oKey} ===\'PendingApprovalOrders\'? true: false }">
+						<l:BlockLayoutRow accentCells="Accent1" class="sapUiResponsiveMargin">
+							<l:BlockLayoutCell width="2">
+								<SearchField width="100%" class="sapUiSmallMarginEnd" liveChange="pndOrdtblLiveChange" id="inp_srchlistOfPendingOrder"/>
+							</l:BlockLayoutCell>
+							<l:BlockLayoutCell width="2"></l:BlockLayoutCell>
+						</l:BlockLayoutRow>
+					</l:BlockLayout>
+					<Table inset="false" class="pendingOrderTable" showNoData="false"
+						visible="{= ${OrderTypeModel>/OrderTypeModel/0/oKey} ===\'PendingApprovalOrders\'? true: false }">
+						<columns>
+							<Column width="5rem" hAlign="Center"><Text text="Order No"/></Column>
+							<Column width="10rem" hAlign="Center"><Text text="Account Name"/></Column>
+							<Column width="5rem" hAlign="Center" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"><Text text="City"/></Column>
+							<Column width="5rem" hAlign="Center" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"><Text text="Order Value"/></Column>
+						</columns>
+					</Table>
+					<ScrollContainer class="scroll_mycustomersTbl" vertical="true" id="scroll_pendingcustomersTbl"
+						visible="{= ${OrderTypeModel>/OrderTypeModel/0/oKey} ===\'PendingApprovalOrders\'? true: false }" height="525px">
+						<Table id="tbl_pendingOrderTable" inset="false" class="pendingOrderTable" items="{pendingOrders>/pendingOrders}" growing="true"
+							growingThreshold="100" growingScrollToLoad="true">
+							<columns>
+								<Column width="5rem" hAlign="Center"></Column>
+								<Column width="10rem" hAlign="Center"></Column>
+								<Column width="5rem" hAlign="Center" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"></Column>
+								<Column width="5rem" hAlign="Center" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"></Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells><Text text="{pendingOrders>OrderNo}"/><Text text="{pendingOrders>CustomerName1}"/><Text text="{pendingOrders>City}"/><Text text="{pendingOrders>NetPrice}"/></cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+					<l:BlockLayout id="BlockLayout2" class="addToCartBlockLayout1"
+						visible="{= ${OrderTypeModel>/OrderTypeModel/0/oKey} ===\'RejectedOrders\'? true: false }">
+						<l:BlockLayoutRow accentCells="Accent1" class="sapUiResponsiveMargin">
+							<l:BlockLayoutCell width="2"><SearchField width="100%" class="sapUiSmallMarginEnd" liveChange="rejordrtblliveChange" id="inp_srchlistOfRejectedOrder"/>
+							</l:BlockLayoutCell>
+							<l:BlockLayoutCell width="2"><Button class="type2 sapUiSmallMarginBeginEnd" icon="sap-icon://write-new-document" press="onUpdateOrder" text="Update Order"
+								iconFirst="true" tooltip="Update Order"/>
+							</l:BlockLayoutCell>
+						</l:BlockLayoutRow>
+					</l:BlockLayout>
+					<Table inset="false" class="rejectedOrderTable" mode="SingleSelectLeft" showNoData="false"
+						visible="{= ${OrderTypeModel>/OrderTypeModel/0/oKey} ===\'RejectedOrders\'? true: false }">
+						<columns>
+							<Column width="5rem" hAlign="Center"><Text text="Order No"/></Column>
+							<Column width="10rem" hAlign="Center"><Text text="Account Name"/></Column>
+							<Column width="5rem" hAlign="Center" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"><Text text="City"/></Column>
+							<Column width="5rem" hAlign="Center" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"><Text text="Order Value"/></Column>
+						</columns>
+					</Table>
+					<ScrollContainer class="scroll_mycustomersTbl" vertical="true" height="525px" id="scroll_rejectedcustomersTbl"
+						visible="{= ${OrderTypeModel>/OrderTypeModel/0/oKey} ===\'RejectedOrders\'? true: false }">
+						<Table id="tbl_rejectedOrderTable" inset="false" class="rejectedOrderTable" items="{rejectedOrders>/rejectedOrders}" growing="true"
+							growingThreshold="100" growingScrollToLoad="true" mode="SingleSelectLeft">
+							<columns>
+								<Column width="5rem" hAlign="Center"></Column>
+								<Column width="10rem" hAlign="Center"></Column>
+								<Column width="5rem" hAlign="Center" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"></Column>
+								<Column width="5rem" hAlign="Center" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline"></Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells><Text text="{rejectedOrders>OrderNo}"/><Text text="{rejectedOrders>CustomerName1}"/><Text text="{rejectedOrders>City}"/><Text text="{rejectedOrders>NetPrice}"/></cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+				</content>
+			</Page>
+		</pages>
+	</App>
+	<!-- <Page id="page" title="{i18n>title}">
+        <content />
+    </Page> -->
+</mvc:View>

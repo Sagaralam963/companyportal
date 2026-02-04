@@ -1,0 +1,62 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	controllerName="companyportal.controller.Table_view" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page showNavButton="true" navButtonPress="onBack">
+				<content>
+					<Table id="idTable" class="sapUiSizeCompact" inset="true" items="{ProductModel>/Item}" sticky="ColumnHeaders,HeaderToolbar">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Title text="" level="H2"/>
+								<ToolbarSpacer/>
+								<SearchField id="searchField" showRefreshButton="true" liveChange="OnSearched" width="auto">
+									<layoutData>
+										<OverflowToolbarLayoutData minWidth="150px" maxWidth="240px" shrinkable="true" priority="NeverOverflow"/>
+									</layoutData>
+								</SearchField>
+								<Button press="OnClick" text="Create" type="Emphasized"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column>
+								<Text text="Id"/>
+							</Column>
+							<Column minScreenWidth="Tablet">
+								<Text text="Product"/>
+							</Column>
+							<Column width="5rem">
+								<Text text="Company"/>
+							</Column>
+							<Column width="7rem"></Column>
+							<Column>
+								<Text text="Delivered on"/>
+							</Column>
+							<Column>
+								<Text text="Rating"/>
+							</Column>
+							<Column>
+								<Text text="Price"/>
+							</Column>
+							<Column ></Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{ProductModel>Id}"/>
+									<Text text="{ProductModel>Product}"/>
+									<Text text="{ProductModel>Company}"/>
+									<Image src="{ProductModel>Icon}" width="3rem"/>
+									<Text text="{ProductModel>Delivery}"/>
+									<RatingIndicator change="handleChange" enabled="false" value="{ProductModel>Rating}"/>
+									<!--<Text text="{ProductModel>Rating}"/>-->
+									<Text text="{ProductModel>Price}"/>
+									<Link text="{ProductModel>Review}" press="onReviewpress"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

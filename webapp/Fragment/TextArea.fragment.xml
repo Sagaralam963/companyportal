@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="TextArea1" title="Add Review">
+		<!--<ObjectAttribute title="Product" class="sapUiTinyMargin sapUiSmallMarginBegin"/>-->
+		<TextArea id="TextAreaId" width="90%" class="sapUiTinyMargin sapUiSmallMarginBegin"/>
+		<Toolbar class="foot">
+			<ToolbarSpacer/>
+			<Button text="Edit" press="OnEditTextArea"></Button>
+			<Button text="Save" press="OnSaveTextArea" visible="false" type="Success"></Button>
+			<Button text="Cancel" press="OnCloseTextArea"></Button>
+		</Toolbar>
+	</Dialog>
+</core:FragmentDefinition>

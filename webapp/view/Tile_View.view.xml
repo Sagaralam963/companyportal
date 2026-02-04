@@ -1,0 +1,26 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="companyportal.controller.Tile_View"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Title">
+				<content>
+					<FlexBox class="Flex" items="{path:'Tile_Model>/Tile'}" wrap="Wrap">
+						<items>
+							<GenericTile sizeBehavior="Responsive" press="onPressTile" frameType="Auto" wrappingType="Normal">
+								<TileContent size="Responsive">
+									<content>
+										<VBox justifyContent="Center" alignContent="Center" alignItems="Center" height="5rem">
+											<items>
+												<core:Icon src="{Tile_Model>Icon}" size="5rem"/>
+											</items>
+										</VBox>
+									</content>
+								</TileContent>
+							</GenericTile>
+						</items>
+					</FlexBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

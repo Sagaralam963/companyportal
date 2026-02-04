@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="Act" title="Create">
+		<ObjectAttribute title="Product" class="sapUiTinyMargin sapUiSmallMarginBegin"/>
+		<Input width="90%" id="ProductId" change="OnChangeProduct" class="sapUiSmallMargin"/>
+		<Input visible="false" id="abc"/>
+		<ObjectAttribute title="Company" class="sapUiTinyMargin sapUiSmallMarginBegin"/>
+		<ComboBox width="90%" id="CompanyId" change="OnChangeExpDays" class="sapUiSmallMargin">
+			<!--items="{ComboModel>/Combo_Array}"<core:Item key="{ComboModel>Company}" text="{ComboModel>Company}"/>-->
+		</ComboBox>
+		<ObjectAttribute title="Delivery On" class="sapUiTinyMargin sapUiSmallMarginBegin"/>
+		<DatePicker width="90%" id="DeliveryId" change="OnChangeExpDays" class="sapUiSmallMargin"/>
+		<ObjectAttribute title="Rating" class="sapUiTinyMargin sapUiSmallMarginBegin"/>
+		<Input width="90%" id="RatingId" change="OnChangeExpDays" class="sapUiSmallMargin"/>
+		<ObjectAttribute title="Price" class="sapUiTinyMargin sapUiSmallMarginBegin"/>
+		<Input width="90%" id="PriceId" change="OnChangeExpDays" class="sapUiSmallMargin"/>
+		<Toolbar class="foot">
+			<ToolbarSpacer/>
+			<Button text="Save" press="OnSave" type="Success"></Button>
+			<Button text="Cancel" press="OnClose" type="Negative"></Button>
+		</Toolbar>
+	</Dialog>
+</core:FragmentDefinition>

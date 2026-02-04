@@ -14,7 +14,17 @@
       "id": "@sap/generator-fiori:basic",
       "version": "1.20.2",
       "toolsId": "b152a203-6a38-4c7e-9bae-b2700d02715e"
-    }
+    },
+    "dataSources": {
+			"Tile": {
+				"uri": "model/Tile_View.json",
+				"type": "JSON"
+			},
+			"Table": {
+				"uri": "model/Shop.json",
+				"type": "JSON"
+			}
+		}
   },
   "sap.ui": {
     "technology": "UI5",
@@ -51,7 +61,15 @@
         "settings": {
           "bundleName": "companyportal.i18n.i18n"
         }
-      }
+      },
+			"Tile_Model": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "Tile"
+			},
+			"ProductModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "Table"
+			}
     },
     "resources": {
       "css": [
@@ -73,20 +91,45 @@
         "viewPath": "companyportal.view"
       },
       "routes": [
-        {
-          "name": "Page1",
-          "pattern": "",
-          "target": [
-            "Page1"
-          ]
-        }
-      ],
+				{
+					"name": "RouteView1",
+					"pattern": "RouteView1",
+					"target": [
+						"TargetView1"
+					]
+				},
+				{
+					"name": "Tile_View",
+					"pattern": "",
+					"target": [
+						"Tile_View"
+					]
+				},
+				{
+					"name": "Table_view",
+					"pattern": "Table_view",
+					"target": [
+						"Table_view"
+					]
+				}
+			],
       "targets": {
-        "Page1": {
-          "id": "Page1",
-          "name": "Page1"
-        }
-      }
+				"TargetView1": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewId": "View1",
+					"viewName": "View1"
+				},
+				"Tile_View": {
+					"viewType": "XML",
+					"viewName": "Tile_View"
+				},
+				"Table_view": {
+					"viewType": "XML",
+					"viewName": "Table_view"
+				}
+			}
     },
     "rootView": {
       "viewName": "companyportal.view.App",
