@@ -11,7 +11,7 @@ sap.ui.define([
 		 * @memberOf companyportal.view.Tile_View
 		 */
 		onInit: function () {
-debugger;
+
 		},
 
 		onPressTile: function (oEvent) {
